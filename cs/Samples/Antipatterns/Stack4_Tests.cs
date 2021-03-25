@@ -13,9 +13,9 @@ namespace Samples.Antipatterns
 			var stack = new Stack<int>(new[] { 1, 2, 3, 4, 5 });
 			var result = stack.Pop();
 			Assert.AreEqual(5, result);
-			Assert.IsTrue(stack.Any());
+			Assert.IsTrue(stack.Any()); //проверка что стек не пустой 
 			Assert.AreEqual(4, stack.Count);
-			Assert.AreEqual(4, stack.Peek());
+			Assert.AreEqual(4, stack.Peek()); //на вершине лежит "4"
 			Assert.AreEqual(new[] { 4, 3, 2, 1 }, stack.ToArray());
 		}
 
@@ -38,5 +38,44 @@ namespace Samples.Antipatterns
 		Признак возможной проблемы — более одного Assert на метод.
 		*/
 		#endregion
+
+		//лучше так
+		[Test]
+		public void ReturnLastPushedItem_AfterPop()
+		{
+			var stack = new Stack<int>(new[] { 1, 2, 3, 4, 5 });
+			var result = stack.Pop();
+			Assert.AreEqual(5, result);
+		}
+		[Test]
+		public void StackNotEmpty_AfterPop()
+		{
+			var stack = new Stack<int>(new[] { 1, 2, 3, 4, 5 });
+			stack.Pop();
+			Assert.IsTrue(stack.Any()); //проверка что стек не пустой 
+		}
+		[Test]
+		public void StackDecrease_AfterPop()
+		{
+			var stack = new Stack<int>(new[] { 1, 2, 3, 4, 5 });
+			stack.Pop();
+			Assert.AreEqual(4, stack.Count);
+		}
+
+		[Test]
+		public void SecondItemOnTop_AfterPop()
+		{
+			var stack = new Stack<int>(new[] { 1, 2, 3, 4, 5 });
+			stack.Pop();
+			Assert.AreEqual(4, stack.Peek()); //на вершине лежит "4"
+		}
+
+		[Test]
+		public void LeaveOtherItems_AfterPop()
+		{
+			var stack = new Stack<int>(new[] { 1, 2, 3, 4, 5 });
+			stack.Pop();
+			Assert.AreEqual(new[] { 4, 3, 2, 1 }, stack.ToArray());
+		}
 	}
 }

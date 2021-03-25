@@ -57,6 +57,7 @@
     <Compile Include="Antipatterns\Stack3_Tests.cs" />
     <Compile Include="Antipatterns\Stack4_Tests.cs" />
     <Compile Include="Parametrized\Double_Should.cs" />
+    <Compile Include="PrepairTests\SetUpAndTeardown.cs" />
     <Compile Include="Specifications\Stack_Specification.cs" />
     <Compile Include="TestDataBuilder\TestUserBuilder.cs" />
     <Compile Include="TestDataBuilder\TestUsers.cs" />

@@ -7,7 +7,7 @@ namespace Challenge
 	/**
 	 * <summary>
 	 * Частотный словарь добавленных слов. 
-	 * Слова сравниваются без учета регистра символов. 
+	 * Слова сравниваются без учета регистра символов. // GetStatistics_IgnoresCase() //готово
 	 * Порядок — по убыванию частоты слова.
 	 * При одинаковой частоте — в лексикографическом порядке.
 	 * </summary>
@@ -19,10 +19,12 @@ namespace Challenge
 
 		public virtual void AddWord(string word)
 		{
-			if (word == null) throw new ArgumentNullException(nameof(word));
-			if (string.IsNullOrWhiteSpace(word)) return;
-			if (word.Length > 10)
-				word = word.Substring(0, 10);
+			if (word == null) throw new ArgumentNullException(nameof(word)); //если слов нет, выходит exception
+			if (string.IsNullOrWhiteSpace(word)) return; //если строки пустые или состоят из пробелов, то мы слово игнорируем 
+			//метод WordsStatisticsE противоречит этому
+			
+			if (word.Length > 10) //если слово состоит из более, чем 10 символов
+				word = word.Substring(0, 10); //отрезать все после 10го знака
 			int count;
 			statistics[word.ToLower()] = 1 + (statistics.TryGetValue(word.ToLower(), out count) ? count : 0);
 		}

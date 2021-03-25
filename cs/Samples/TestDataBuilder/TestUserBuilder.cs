@@ -43,10 +43,11 @@
 			return this;
 		}
 
+		//пока не брал
 		public TestUserBuilder InUserRole() => InRole("ROLE_USER");
-
+		//пока не брал
 		public TestUserBuilder InAdminRole() => InRole("ROLE_ADMIN");
-
+		//пока не брал
 		public TestUserBuilder InRole(string newRole)
 		{
 			this.role = newRole;
@@ -60,10 +61,11 @@
 				.WithPassword(password)
 				.WithLogin(login);
 
-		public User Build() => new User(name, login, password, role);
+		public User Build() => new User(name, login, password, role); //В итоге выдает готового пользователя
 
 		public static User ARegularUser() => AUser().Build();
 		
+		//пока не брал
 		public static User AnAdmin() => AUser()
 			.WithName("Neo")
 			.WithLogin("neo")

@@ -47,25 +47,25 @@ namespace Challenge.IncorrectImplementations
     }
 
     [IncorrectImplementation]
-    public class WordsStatisticsC : WordsStatistics
+    public class WordsStatisticsC : WordsStatistics //GetStatistics_IgnoresCase()
     {
         public override void AddWord(string word)
         {
             if (word == null) throw new ArgumentNullException(nameof(word));
             if (string.IsNullOrWhiteSpace(word)) return;
             if (word.Length > 10) word = word.Substring(0, 10);
-            if (!statistics.ContainsKey(word.ToLower()))
+            if (!statistics.ContainsKey(word.ToLower())) //Слова сравниваются без учета регистра символов.
                 statistics[word] = 0;
             statistics[word]++;
         }
     }
 
     [IncorrectImplementation]
-    public class WordsStatisticsE : WordsStatistics
+    public class WordsStatisticsE : WordsStatistics //AddWord_IgnoreEmptyWord() 
     {
         public override void AddWord(string word)
         {
-            if (string.IsNullOrWhiteSpace(word)) throw new ArgumentNullException(nameof(word));
+            if (string.IsNullOrWhiteSpace(word)) throw new ArgumentNullException(nameof(word)); //если слово пустое или состоит из пробелов, то выходит exception
             if (word.Length > 10) word = word.Substring(0, 10);
             int count;
 			statistics[word.ToLower()] = 1 + (statistics.TryGetValue(word.ToLower(), out count) ? count : 0);

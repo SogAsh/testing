@@ -5,16 +5,17 @@ using NUnit.Framework;
 namespace Samples.AAA
 {
 	[TestFixture]
-	public class Zip_Should
+	public class Zip_Should //примеры Arrange Act Assert
 	{
 		[Test]
 		public void GiveResultOfSameSize_OnEqualSizeArrays()
 		{
+			//Arrange
 			var arr1 = new[] { 1 };
 			var arr2 = new[] { 2 };
-
-			var result = arr1.Zip(arr2, Tuple.Create);
-
+			//Act
+			var result = arr1.Zip(arr2, Tuple.Create); //метод zip склеивает 2 массива
+			//Assert
 			CollectionAssert.AreEqual(new[] { Tuple.Create(1, 2) }, result);
 		}
 

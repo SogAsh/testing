@@ -15,8 +15,8 @@ namespace Samples.Antipatterns
 			stack.Push(10);
 			stack.Push(20);
 			stack.Push(30);
-			while (stack.Any())
-				Console.WriteLine(stack.Pop());
+			while (stack.Any()) //пока стек не пустой
+				Console.WriteLine(stack.Pop()); //надо доставать значения и печатать
 		}
 
 		#region Почему это плохо?
@@ -29,6 +29,20 @@ namespace Samples.Antipatterns
 
 		Вместо вывода на консоль, используйте Assert-ы.
 		*/
+		//Лучше так
+		[Test]
+		public void TestPushPop2()
+		{
+			var stack = new Stack<int>();
+			stack.Push(10);
+			stack.Push(20);
+			stack.Push(30);
+
+			var values = new List<int>(); //создаем коллекцию
+			while (stack.Any()) //пока стек не пустой
+				values.Add(stack.Pop()); //добавить значения из стека в коллекцию
+			Assert.That(values, Is.EqualTo(new[] { 30, 20, 10 })); //проверяем что в этой колеекция оказалось то что мы ожидаем
+		}
 		#endregion
 	}
 }

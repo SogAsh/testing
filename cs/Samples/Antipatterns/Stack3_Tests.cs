@@ -4,8 +4,8 @@ using NUnit.Framework;
 
 namespace Samples.Antipatterns
 {
-    [TestFixture, Explicit]
-    public class Stack3_Tests
+	[TestFixture, Explicit]
+	public class Stack3_Tests
 	{
 		[Test]
 		public void Test()
@@ -48,5 +48,45 @@ namespace Samples.Antipatterns
 		Если вы не можете придумать название теста, у вас Free Ride!
 		*/
 		#endregion
+		//Лучше так
+		[Test]
+		public void IsEmpty_AfterCreateon()
+		{
+			var stack = new Stack<int>();
+			Assert.IsFalse(stack.Any());
+		}
+		
+		[Test]
+		public void IsEmpty_AfterPushAndPop()
+        {
+			var stack = new Stack<int>();
+			stack.Push(1);
+			stack.Pop();
+			Assert.IsFalse(stack.Any());
+		}
+
+		[Test]
+		public void ReturnItemCount_AfterPush()
+		{
+			var stack = new Stack<int>();
+			stack.Push(1);
+			stack.Push(2);
+			stack.Push(3);
+			Assert.AreEqual(3, stack.Count);
+		}
+
+		[Test]
+		public void ReturnReverseItem_AfterPop()
+		{
+			var stack = new Stack<int>();
+			stack.Pop();
+			stack.Pop();
+			stack.Pop();
+			Assert.IsFalse(stack.Any());
+			for (var i = 0; i < 1000; i++)
+				stack.Push(i);
+			for (var i = 1000; i > 0; i--)
+				Assert.AreEqual(i - 1, stack.Pop());
+		}
 	}
 }

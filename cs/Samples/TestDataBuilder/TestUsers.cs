@@ -2,7 +2,7 @@
 {
 	public class TestUsers
 	{
-		public static User ARegularUser()
+		public static User ARegularUser() //Что за ссылка на User?
 		{
 			return new User("Triniti", "tri", "asdasd", "ROLE_USER");
 		}

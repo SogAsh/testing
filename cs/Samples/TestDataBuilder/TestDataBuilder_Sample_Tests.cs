@@ -18,6 +18,7 @@ namespace Samples.TestDataBuilder
 		{
 			var user = TestUserBuilder.AUser().Build();
 			var adminUser = TestUserBuilder.AUser().InAdminRole().Build();
+			var adminUserWithPassword = TestUserBuilder.AUser().InAdminRole().WithNoPassword().Build();
 			// Такой код не ломается, при смене сигнатуры конструктора User.
 			// Это важно, если таких тестов много.
 		}

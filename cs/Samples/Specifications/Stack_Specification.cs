@@ -22,7 +22,7 @@ namespace Samples.Specifications
 			var stack = new Stack<int>(new[] { 1, 2, 3 });
 
 			Assert.AreEqual(3, stack.Count);
-			Assert.AreEqual(3, stack.Pop());
+			Assert.AreEqual(3, stack.Pop()); //метод Pop извлекает элементы из стэка "первый пришел первый вышел"
 			Assert.AreEqual(2, stack.Pop());
 			Assert.AreEqual(1, stack.Pop());
 			Assert.AreEqual(0, stack.Count);
